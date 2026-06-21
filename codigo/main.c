@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "estruturas.h"
 
 #define MAX 5
 
@@ -12,7 +13,12 @@
 // implementar: FUNCOES INICIAIS (prototipos das funcoes dos outros arquivos)
 
 int main() {
-    // implementar: declarar os 3 vetores e contadores
+    Cliente clientes[MAX];
+    Produto produtos[MAX];
+    Venda vendas[MAX];
+    int totalClientes = 0;
+    int totalProdutos = 0;
+    int totalVendas = 0;
 
     // implementar: carregar dados dos arquivos binarios
 

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "estruturas.h"
 
 #define MAX 5
 
