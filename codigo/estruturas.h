@@ -29,4 +29,8 @@ typedef struct {
     char  formaPagamento[30]; /* Ex: Dinheiro, Cartão, Pix…      */
 } Venda;
 
+void menuCliente(Cliente clientes[], int *totalClientes, Venda vendas[], int totalVendas);
+void menuProduto(Produto produtos[], int *totalProdutos, Venda vendas[], int totalVendas);
+void menuVenda(Venda vendas[], int *totalVendas, Cliente clientes[], int totalClientes, Produto produtos[], int totalProdutos);
+
 #endif /* ESTRUTURAS_H */

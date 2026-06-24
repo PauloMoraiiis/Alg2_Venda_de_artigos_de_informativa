@@ -4,24 +4,46 @@
 
 #define MAX 5
 
-// implementar: ESTRUTURA 3 - VENDA (typedef struct, igual ao main.c)
+#include <stdio.h>
+#include <string.h>
+#include "estruturas.h"
 
-// implementar: ESTRUTURA 2 - PRODUTO (typedef struct, igual ao main.c)
+#define MAX 5
 
-// implementar: buscarProduto - recebe o vetor, o total e o codigo, retorna a posicao ou -1
+void menuProduto(Produto produtos[], int *totalProdutos, Venda vendas[], int totalVendas) {
+    int opcao;
+    do {
+        printf("\nMENU PRODUTOS\n");
+        printf("1. Cadastrar Produto\n");
+        printf("2. Consultar Produto\n");
+        printf("3. Alterar Produto\n");
+        printf("4. Remover Produto\n");
+        printf("5. Listar Todos os Produtos\n");
+        printf("0. Voltar ao Menu Principal\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d", &opcao);
 
-// implementar: salvarProdutos - salva o vetor em produtos.bin usando fwrite
-
-// implementar: carregarProdutos - le o vetor de produtos.bin usando fread, retorna o total
-
-// implementar: cadastrarProduto - pede os dados, verifica se codigo ja existe, insere no vetor
-
-// implementar: consultarProduto - pede o codigo, busca e mostra os dados
-
-// implementar: alterarProduto - pede o codigo, busca e deixa alterar os campos
-
-// implementar: removerProduto - pede o codigo, verifica se tem venda, remove deslocando o vetor
-
-// implementar: listarProdutos - percorre o vetor e mostra todos os produtos
-
-// implementar: MENU PRODUTO (loop com switch chamando as funcoes acima)
+        switch(opcao) {
+            case 1:
+                printf("Funcao Cadastrar Produto em desenvolvimento...\n");
+                break;
+            case 2:
+                printf("Funcao Consultar Produto em desenvolvimento...\n");
+                break;
+            case 3:
+                printf("Funcao Alterar Produto em desenvolvimento...\n");
+                break;
+            case 4:
+                printf("Funcao Remover Produto em desenvolvimento...\n");
+                break;
+            case 5:
+                printf("Funcao Listar Produtos em desenvolvimento...\n");
+                break;
+            case 0:
+                printf("\nVoltando ao Menu Principal...\n");
+                break;
+            default:
+                printf("\nOpcao invalida. Tente novamente.\n");
+        }
+    } while(opcao != 0);
+}
