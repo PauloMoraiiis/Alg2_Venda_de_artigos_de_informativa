@@ -4,13 +4,18 @@
 
 #define MAX 5
 
-// implementar: ESTRUTURA 1 - CLIENTE (typedef struct)
+void menuClientes(Cliente clientes[], int *totalClientes, Venda vendas[], int totalVendas);
+void menuProdutos(Produto produtos[], int *totalProdutos, Venda vendas[], int totalVendas);
+void menuVendas(Venda vendas[], int *totalVendas, Cliente clientes[], int totalClientes, Produto produtos[], int totalProdutos);
+void listarClientes(Cliente clientes[], int totalClientes);
+void listarProdutos(Produto produtos[], int totalProdutos);
 
-// implementar: ESTRUTURA 2 - PRODUTO (typedef struct)
-
-// implementar: ESTRUTURA 3 - VENDA (typedef struct)
-
-// implementar: FUNCOES INICIAIS (prototipos das funcoes dos outros arquivos)
+int  carregarClientes(Cliente clientes[]);
+void salvarClientes(Cliente clientes[], int totalClientes);
+int  carregarProdutos(Produto produtos[]);
+void salvarProdutos(Produto produtos[], int totalProdutos);
+int  carregarVendas(Venda vendas[]);
+void salvarVendas(Venda vendas[], int totalVendas);
 
 int main() {
     Cliente clientes[MAX];
@@ -19,12 +24,50 @@ int main() {
     int totalClientes = 0;
     int totalProdutos = 0;
     int totalVendas = 0;
+    int opcao;
 
-    // implementar: carregar dados dos arquivos binarios
+    totalClientes = carregarClientes(clientes);
+    totalProdutos = carregarProdutos(produtos);
+    totalVendas   = carregarVendas(vendas);
 
-    // implementar: MENU PRINCIPAL (loop com switch)
+    do {
+        printf("\n=== SISTEMA DE VENDAS - HARDWARE & TI ===\n");
+        printf("1. Gerenciar Clientes\n");
+        printf("2. Gerenciar Produtos\n");
+        printf("3. Gerenciar Vendas\n");
+        printf("4. Listar Clientes\n");
+        printf("5. Listar Produtos\n");
+        printf("0. Salvar e Sair\n");
+        printf("Opcao: ");
+        scanf("%d", &opcao);
+        getchar();
 
-    // implementar: salvar dados nos arquivos binarios ao sair
+        switch (opcao) {
+            case 1:
+                menuClientes(clientes, &totalClientes, vendas, totalVendas);
+                break;
+            case 2:
+                menuProdutos(produtos, &totalProdutos, vendas, totalVendas);
+                break;
+            case 3:
+                menuVendas(vendas, &totalVendas, clientes, totalClientes, produtos, totalProdutos);
+                break;
+            case 4:
+                listarClientes(clientes, totalClientes);
+                break;
+            case 5:
+                listarProdutos(produtos, totalProdutos);
+                break;
+            case 0:
+                salvarClientes(clientes, totalClientes);
+                salvarProdutos(produtos, totalProdutos);
+                salvarVendas(vendas, totalVendas);
+                printf("Dados salvos. Encerrando.\n");
+                break;
+            default:
+                printf("Opcao invalida.\n");
+        }
+    } while (opcao != 0);
 
     return 0;
 }
