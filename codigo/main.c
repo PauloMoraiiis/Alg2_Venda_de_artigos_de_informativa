@@ -4,9 +4,18 @@
 
 #define MAX 5
 
-void menuCliente(Cliente clientes[], int *totalClientes, Venda vendas[], int totalVendas);
-void menuProduto(Produto produtos[], int *totalProdutos, Venda vendas[], int totalVendas);
-void menuVenda(Venda vendas[], int *totalVendas, Cliente clientes[], int totalClientes, Produto produtos[], int totalProdutos);
+void menuClientes(Cliente clientes[], int *totalClientes, Venda vendas[], int totalVendas);
+void menuProdutos(Produto produtos[], int *totalProdutos, Venda vendas[], int totalVendas);
+void menuVendas(Venda vendas[], int *totalVendas, Cliente clientes[], int totalClientes, Produto produtos[], int totalProdutos);
+void listarClientes(Cliente clientes[], int totalClientes);
+void listarProdutos(Produto produtos[], int totalProdutos);
+
+int  carregarClientes(Cliente clientes[]);
+void salvarClientes(Cliente clientes[], int totalClientes);
+int  carregarProdutos(Produto produtos[]);
+void salvarProdutos(Produto produtos[], int totalProdutos);
+int  carregarVendas(Venda vendas[]);
+void salvarVendas(Venda vendas[], int totalVendas);
 
 int main() {
     Cliente clientes[MAX];
@@ -15,34 +24,50 @@ int main() {
     int totalClientes = 0;
     int totalProdutos = 0;
     int totalVendas = 0;
+    int opcao;
 
-  int opcao;
+    totalClientes = carregarClientes(clientes);
+    totalProdutos = carregarProdutos(produtos);
+    totalVendas   = carregarVendas(vendas);
+
     do {
-        printf("SISTEMA DE VENDAS DE ARTIGOS DE INFORMÁTICA\n");
+        printf("\nSISTEMA DE VENDAS - HARDWARE & TI\n");
         printf("1. Gerenciar Clientes\n");
         printf("2. Gerenciar Produtos\n");
         printf("3. Gerenciar Vendas\n");
-        printf("0. Sair\n");
-        printf("Escolha uma opcao: ");
+        printf("4. Listar Clientes\n");
+        printf("5. Listar Produtos\n");
+        printf("0. Salvar e Sair\n");
+        printf("Opcao: ");
         scanf("%d", &opcao);
+        getchar();
 
-        switch(opcao) {
+        switch (opcao) {
             case 1:
-                menuCliente(clientes, &totalClientes, vendas, totalVendas);
+                menuClientes(clientes, &totalClientes, vendas, totalVendas);
                 break;
             case 2:
-                menuProduto(produtos, &totalProdutos, vendas, totalVendas);
+                menuProdutos(produtos, &totalProdutos, vendas, totalVendas);
                 break;
             case 3:
-                menuVenda(vendas, &totalVendas, clientes, totalClientes, produtos, totalProdutos);
+                menuVendas(vendas, &totalVendas, clientes, totalClientes, produtos, totalProdutos);
+                break;
+            case 4:
+                listarClientes(clientes, totalClientes);
+                break;
+            case 5:
+                listarProdutos(produtos, totalProdutos);
                 break;
             case 0:
-                printf("\nEncerrando o sistema...\n");
+                salvarClientes(clientes, totalClientes);
+                salvarProdutos(produtos, totalProdutos);
+                salvarVendas(vendas, totalVendas);
+                printf("Dados salvos. Encerrando.\n");
                 break;
             default:
-                printf("\nOpcao invalida. Tente novamente.\n");
+                printf("Opcao invalida.\n");
         }
-    } while(opcao != 0);
+    } while (opcao != 0);
 
     return 0;
 }
