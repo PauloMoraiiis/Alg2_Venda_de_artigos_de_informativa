@@ -1,43 +1,63 @@
 #include <stdio.h>
 #include <string.h>
-#include "estruturas.h"
 
 #define MAX 5
 
+// estrutura do cliente
+typedef struct {
+    int codigo;
+    char nome[100];
+    char cpf[20];
+    char email[100];
+    char telefone[20];
+    char cidade[60];
+} Cliente;
+
+// estrutura do produto
+typedef struct {
+    int codigo;
+    char nome[100];
+    char categoria[60];
+    char marca[60];
+    float preco;
+    int quantidadeEstoque;
+} Produto;
+
+// estrutura da venda
+typedef struct {
+    int codigoVenda;
+    int codigoCliente;
+    int codigoProduto;
+    int quantidade;
+    char data[11];
+    float valorTotal;
+    char formaPagamento[30];
+} Venda;
+
+// prototipos das funcoes
 void menuClientes(Cliente clientes[], int *totalClientes, Venda vendas[], int totalVendas);
 void menuProdutos(Produto produtos[], int *totalProdutos, Venda vendas[], int totalVendas);
 void menuVendas(Venda vendas[], int *totalVendas, Cliente clientes[], int totalClientes, Produto produtos[], int totalProdutos);
 void listarClientes(Cliente clientes[], int totalClientes);
 void listarProdutos(Produto produtos[], int totalProdutos);
-
-int  carregarClientes(Cliente clientes[]);
-void salvarClientes(Cliente clientes[], int totalClientes);
-int  carregarProdutos(Produto produtos[]);
-void salvarProdutos(Produto produtos[], int totalProdutos);
-int  carregarVendas(Venda vendas[]);
-void salvarVendas(Venda vendas[], int totalVendas);
+void listarVendas(Venda vendas[], int totalVendas, Cliente clientes[], int totalClientes, Produto produtos[], int totalProdutos);
 
 int main() {
     Cliente clientes[MAX];
     Produto produtos[MAX];
     Venda vendas[MAX];
-    int totalClientes = 0;
-    int totalProdutos = 0;
-    int totalVendas = 0;
+    int totalClientes = 0, totalProdutos = 0, totalVendas = 0;
     int opcao;
 
-    totalClientes = carregarClientes(clientes);
-    totalProdutos = carregarProdutos(produtos);
-    totalVendas   = carregarVendas(vendas);
-
     do {
-        printf("\nSISTEMA DE VENDAS - HARDWARE & TI\n");
-        printf("1. Gerenciar Clientes\n");
-        printf("2. Gerenciar Produtos\n");
-        printf("3. Gerenciar Vendas\n");
-        printf("4. Listar Clientes\n");
-        printf("5. Listar Produtos\n");
-        printf("0. Salvar e Sair\n");
+        printf("\n--- SISTEMA DE VENDAS - HARDWARE E INFORMATICA ---\n");
+        printf("1 - Gerenciar Clientes\n");
+        printf("2 - Gerenciar Produtos\n");
+        printf("3 - Gerenciar Vendas\n");
+        printf("4 - Listar Clientes\n");
+        printf("5 - Listar Produtos\n");
+        printf("6 - Listar Vendas\n");
+        printf("0 - Sair\n");
         printf("Opcao: ");
         scanf("%d", &opcao);
         getchar();
@@ -58,14 +78,14 @@ int main() {
             case 5:
                 listarProdutos(produtos, totalProdutos);
                 break;
+            case 6:
+                listarVendas(vendas, totalVendas, clientes, totalClientes, produtos, totalProdutos);
+                break;
             case 0:
-                salvarClientes(clientes, totalClientes);
-                salvarProdutos(produtos, totalProdutos);
-                salvarVendas(vendas, totalVendas);
-                printf("Dados salvos. Encerrando.\n");
+                printf("Saindo do programa...\n");
                 break;
             default:
-                printf("Opcao invalida.\n");
+                printf("Opcao invalida!\n");
         }
     } while (opcao != 0);
 
